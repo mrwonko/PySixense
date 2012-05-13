@@ -14,18 +14,20 @@ import time
 time.sleep(1)
 
 # query active bases
-activeBases = []
+connectedBases = []
 for i in range(PySixense.GetMaxBases()):
     if PySixense.IsBaseConnected(i):
-        activeBases.append(i)
+        connectedBases.append(i)
         print("Base {} is connected!".format(i))
 
 # abort if no bases available
-if len(activeBases) == 0:
-    print("No active bases found!")
+if len(connectedBases) == 0:
+    print("No connected bases found!")
     assert(PySixense.Exit() == PySixense.Constants.Success)
     import sys
     sys.exit()
+
+PySixense.SetActiveBase(connectedBases[0])
 
 enabledControllers = []
 for i in range(PySixense.GetMaxControllers()):
