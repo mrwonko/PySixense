@@ -44,9 +44,9 @@ struct ControllerData
 {
 	boost::python::list pos;
 	boost::python::list rot_mat;
-	unsigned char joystick_x;
-	unsigned char joystick_y;
-	unsigned char trigger;
+	float joystick_x;
+	float joystick_y;
+	float trigger;
 	unsigned int buttons;
 	unsigned char sequence_number;
 	boost::python::list rot_quat;
