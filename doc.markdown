@@ -2,7 +2,7 @@
 
 ## Overview
 
-The PySixense.pyd file is contains Python Module you'll want to import:
+The PySixense.pyd file is the Python Module you'll want to import:
 
 ```Python
 import PySixense
@@ -35,10 +35,12 @@ When you query controller data using GetData(), GetAllData(), GetNewestData() or
 * *joystick_y* - The analogue stick's vertical position, with -1 being down, 0 the center and 1 up
 * *trigger* - The position of the analogue trigger, with 0 being unpressed and 1 fully pressed
 * *buttons* - Bitflags containing the state of each button, do a bitwise and with the corresponding button mask to retrieve the state:
-  ```Python
-  if data.buttons & PySixense.Constants.Button1:
-    print("Button 1 pressed!")
-  ```
+  
+```Python
+if data.buttons & PySixense.Constants.Button1:
+	print("Button 1 pressed!")
+```
+  
   There are the following button constants:
   - PySixense.Constants.Button1
   - PySixense.Constants.Button2
@@ -113,7 +115,7 @@ Returns status and a list containing 4 PySixense.ControllerData (one for each Py
 
 ### PySixense.GetAllData(index_back)
 
-Returns status and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the data from index_back polls ago (0-PySixense.GetHistorySize()-1)
+Returns status and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the data from index_back polls ago (in range [0, PySixense.GetHistorySize() - 1])
 
 ### PySixense.GetNewestData(controller_index)
 
@@ -121,7 +123,7 @@ Returns status and a PySixense.ControllerData with the newest data for the given
 
 ### PySixense.GetData(controller_index, index_back)
 
-Returns status and a PySixense.ControllerData with the data from index_back polls ago (0 - PySixense.GetHistorySize()-1) for the given controller
+Returns status and a PySixense.ControllerData with the data from index_back polls ago (in range [0, PySixense.GetHistorySize() - 1]) for the given controller
 
 ### PySixense.GetHistorySize()
 
