@@ -31,13 +31,13 @@ When you query controller data using GetData(), GetAllData(), GetNewestData() or
 
 * *pos* - list of 3 numbers describing the controller's 3D position (X, Y, Z)
 * *rot_mat* - A list of 3 lists of 3 numbers each representing the matrix describing the controller's rotation
-* *joystick_x* - The analogue stick's horizontal position, with 0 being left, 127 the center and 255 right
-* *joystick_y* - The analogue stick's vertical position, with 0 being down, 127 the center and 255 up
-* *trigger* - The position of the analogue trigger, with 0 being unpressed and 255 fully pressed
+* *joystick_x* - The analogue stick's horizontal position, with -1 being left, 0 the center and 1 right
+* *joystick_y* - The analogue stick's vertical position, with -1 being down, 0 the center and 1 up
+* *trigger* - The position of the analogue trigger, with 0 being unpressed and 1 fully pressed
 * *buttons* - Bitflags containing the state of each button, do a bitwise and with the corresponding button mask to retrieve the state:
   ```Python
   if data.buttons & PySixense.Constants.Button1:
-	print("Button 1 pressed!")
+    print("Button 1 pressed!")
   ```
   There are the following button constants:
   - PySixense.Constants.Button1
@@ -65,7 +65,7 @@ PySixense.Constants contains a couple of constants used - the Button Bitmasks li
 * *PySixense.Constants.Success* - Returned when functions succeed
 * *PySixense.Constants.Failure* - Returned when functions fail
 
-Note that not all functions return their success.
+Note that not all functions return their status.
 
 ## Functions
 
@@ -73,13 +73,13 @@ Note that not all functions return their success.
 
 Initializes the SDK. Must be successfully called before using any other function.
 
-Returns success.
+Returns status.
 
 ### PySixense.SixenseExit()
 
 Must be called once you're done with the SDK if you called SixenseInit()
 
-Returns success.
+Returns status.
 
 ### PySixense.GetMaxBases()
 
@@ -89,7 +89,7 @@ Returns the maximum number of supported bases, currently 4.
 
 Sets the base of the given index active (i.e. all base-related functions calls will apply to this one)
 
-Returns success
+Returns status
 
 ### PySixense.IsBaseConnected(base_num)
 
@@ -109,19 +109,19 @@ Returns whether the controller of the given index is enabled (0 or 1)
 
 ### PySixense.GetAllNewestData()
 
-Returns success and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the newest data.
+Returns status and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the newest data.
 
 ### PySixense.GetAllData(index_back)
 
-Returns success and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the data from index_back polls ago (0-PySixense.GetHistorySize()-1)
+Returns status and a list containing 4 PySixense.ControllerData (one for each PySixense.GetMaxControllers()) with the data from index_back polls ago (0-PySixense.GetHistorySize()-1)
 
 ### PySixense.GetNewestData(controller_index)
 
-Returns success and a PySixense.ControllerData with the newest data for the given controller
+Returns status and a PySixense.ControllerData with the newest data for the given controller
 
 ### PySixense.GetData(controller_index, index_back)
 
-Returns success and a PySixense.ControllerData with the data from index_back polls ago (0 - PySixense.GetHistorySize()-1) for the given controller
+Returns status and a PySixense.ControllerData with the data from index_back polls ago (0 - PySixense.GetHistorySize()-1) for the given controller
 
 ### PySixense.GetHistorySize()
 
@@ -135,6 +135,34 @@ Returns success.
 
 ### PySixense.GetFilterEnabled()
 
-Returns success and whether filtering is enabled (True or False)
+Returns status and whether filtering is enabled (True or False)
 
 ### PySixense.SetFilterParams(near_range, near_val, far_range, far_val)
+
+Please refer to the Sixense SDK Reference
+
+### PySixense.TriggerVibration(controller_id, duration_100ms, pattern_id)
+
+On controllers that support it (not the Razer Hydra), this triggers a vibration lasting duration_100ms deciseconds. pattern_id is currently ignored.
+
+Returns status.
+
+### PySixense.AutoEnableHemisphereTracking(controller_id)
+
+Deprecated, refer to the Sixense SDK Reference if you really need it.
+
+### PySixense.SetHighPriorityBindingEnabled(on_or_off)
+
+Only for wireless devices. Refer to the Sixense SDK Reference if you need it.
+
+### PySixense.GetHighPriorityBindingEnabled()
+
+Only for wireless devices. Refer to the Sixense SDK Reference if you need it. Returns a 2-tuple.
+
+### PySixense.SetBaseColor(red, green, blue)
+
+Only available on the Wireless Devkits. Refer to the Sixense SDK Reference if you need it.
+
+### PySixense.GetBaseColor()
+
+Only available on the Wireless Devkits. Refer to the Sixense SDK Reference if you need it. Returns a 4-tuple
