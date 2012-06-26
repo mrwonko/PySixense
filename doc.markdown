@@ -34,11 +34,7 @@ When you query controller data using GetData(), GetAllData(), GetNewestData() or
 * *joystick_x* - The analogue stick's horizontal position, with -1 being left, 0 the center and 1 right
 * *joystick_y* - The analogue stick's vertical position, with -1 being down, 0 the center and 1 up
 * *trigger* - The position of the analogue trigger, with 0 being unpressed and 1 fully pressed
-* *buttons* - Bitflags containing the state of each button, do a bitwise and with the corresponding button mask to retrieve the state:
-```Python
-if data.buttons & PySixense.Constants.Button1:
-	print("Button 1 pressed!")
-```
+* *buttons* - Bitflags containing the state of each button, do a bitwise **and** with the corresponding button mask to retrieve the state.
   There are the following button constants:
   - PySixense.Constants.Button1
   - PySixense.Constants.Button2
