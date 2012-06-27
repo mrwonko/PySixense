@@ -65,15 +65,15 @@ Note that not all functions return their status.
 
 ## Functions
 
-### PySixense.SixenseInit()
+### PySixense.Init()
 
 Initializes the SDK. Must be successfully called before using any other function.
 
 Returns status.
 
-### PySixense.SixenseExit()
+### PySixense.Exit()
 
-Must be called once you're done with the SDK if you called SixenseInit()
+Must be called once you're done with the SDK if you called Init()
 
 Returns status.
 
