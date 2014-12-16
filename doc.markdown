@@ -89,7 +89,7 @@ Returns status
 
 ### PySixense.IsBaseConnected(base_num)
 
-Returns whether the base of the given index is currently connected to the PC. (0 or 1)
+Returns whether the base of the given index is currently connected to the PC. (False or True)
 
 ### PySixense.GetMaxControllers()
 
@@ -101,7 +101,7 @@ Returns the number of active controlles of the active base. Use IsControllerEnab
 
 ### PySixense.IsControlledEnabled(controller_index)
 
-Returns whether the controller of the given index is enabled (0 or 1)
+Returns whether the controller of the given index is enabled (False or True)
 
 ### PySixense.GetAllNewestData()
 
@@ -136,6 +136,10 @@ Returns status and whether filtering is enabled (True or False)
 ### PySixense.SetFilterParams(near_range, near_val, far_range, far_val)
 
 Please refer to the Sixense SDK Reference
+
+### PySixense.GetFilterParams()
+
+Please refer to the Sixense SDK Reference. Returns a 5-tuple.
 
 ### PySixense.TriggerVibration(controller_id, duration_100ms, pattern_id)
 
